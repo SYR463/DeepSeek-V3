@@ -1,3 +1,5 @@
+# https://zhuanlan.zhihu.com/p/17781075074
+
 import math
 from dataclasses import dataclass
 from typing import Tuple, Optional, Literal
@@ -372,6 +374,7 @@ def precompute_freqs_cis(args: ModelArgs) -> torch.Tensor:
     return freqs_cis
 
 
+# 位置嵌入方法，旋转位置嵌入；rotary embedding
 def apply_rotary_emb(x: torch.Tensor, freqs_cis: torch.Tensor) -> torch.Tensor:
     """
     Applies rotary positional embeddings to the input tensor.
@@ -595,6 +598,8 @@ class Gate(nn.Module):
         return weights.type_as(x), indices
 
 
+# 混合专家模型，Mixture-of-Experts
+# Expert 层
 class Expert(nn.Module):
     """
     Expert layer for Mixture-of-Experts (MoE) models.
